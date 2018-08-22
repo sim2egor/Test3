@@ -1,0 +1,38 @@
+#ifndef MASHINESMODEL_H
+#define MASHINESMODEL_H
+
+#include <QAbstractListModel>
+
+class MashineList;
+class MashinesModel : public QAbstractListModel
+{
+    Q_OBJECT
+    Q_PROPERTY(mashineList *list READ list WRITE setList )
+
+public:
+    explicit MashinesModel(QObject *parent = nullptr);
+    enum {
+        DelRole =Qt::UserRole,
+        DescriptorRole
+    };
+
+    // Basic functionality:
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+
+    // Editable:
+    bool setData(const QModelIndex &index, const QVariant &value,
+                 int role = Qt::EditRole) override;
+
+    Qt::ItemFlags flags(const QModelIndex& index) const override;
+    virtual QHash <int,QByteArray> roleNames() const override;
+
+    MashineList *list() const;
+    void setList(MashineList *list);
+
+private:
+    MashineList *mList;
+};
+
+#endif // MASHINESMODEL_H
