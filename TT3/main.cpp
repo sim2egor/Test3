@@ -12,11 +12,13 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterType <MashinesModel> ("Mashines",1,0,"MashinesModel");
+    qmlRegisterUncreatableType <MashineList> ("Mashines",1,0,"MashineList",
+                                              QStringLiteral("MashineList not created!!!"));
 
-    MashineList mashineList;
+    MashineList mashList;
 
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty(QStringLiteral("mashineList"), &mashineList);
+    engine.rootContext()->setContextProperty(QStringLiteral("mashList"), &mashList);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

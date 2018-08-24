@@ -7,7 +7,7 @@ class MashineList;
 class MashinesModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(mashineList *list READ list WRITE setList )
+    Q_PROPERTY(MashineList *list READ list WRITE setList )
 
 public:
     explicit MashinesModel(QObject *parent = nullptr);

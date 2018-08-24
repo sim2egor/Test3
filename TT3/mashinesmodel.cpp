@@ -12,24 +12,24 @@ int MashinesModel::rowCount(const QModelIndex &parent) const
 {
     // For list models only the root node (an invalid parent) should return the list's size. For all
     // other (valid) parents, rowCount() should return 0 so that it does not become a tree model.
-    if (parent.isValid())
+    if (parent.isValid()|| !(mList))
         return 0;
 
-    // FIXME: Implement me!
-    return 100;
+
+    return mList->items().size();
 }
 
 QVariant MashinesModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid())
+    if (!index.isValid() || !(mList))
         return QVariant();
 
-    // FIXME: Implement me!
+    const MashineItem item = mList->items().at(index.row());
     switch (role) {
     case DelRole :
-        return QVariant(false);
+        return QVariant(item.del);
     case DescriptorRole:
-        return QVariant(QStringLiteral(" Test Test"));
+        return QVariant(item.descriptor);
 
     }
     return QVariant();
@@ -37,8 +37,19 @@ QVariant MashinesModel::data(const QModelIndex &index, int role) const
 
 bool MashinesModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if (data(index, role) != value) {
-        // FIXME: Implement me!
+    if (!mList) {
+        return false;
+    }
+    MashineItem item = mList->items().at(index.row());
+    switch (role) {
+    case DelRole :
+     item.del = value.toBool();
+        break;
+    case DescriptorRole:
+        item.descriptor = value.toString();
+        break;
+    }
+    if (mList->setItemAt(index.row(),item)) {
         emit dataChanged(index, index, QVector<int>() << role);
         return true;
     }
@@ -74,12 +85,12 @@ void MashinesModel::setList(MashineList *list)
         mList->disconnect(this);
     }
     mList = list;
-//    if(mList){
-//        connect(mList,&MashineList::preAppendItem,this,[=]() {
-//            const int index = mList->items().size();
-//            beginInsertRows(QModelIndex(),index,index);
-//        });
-//        connect(mList,&MashineList::postAppendItem,this,[=]() {
+  if(mList){
+        connect(mList,&MashineList::preAppendItem,this,[=]() {
+            const int index = mList->items().size();
+            beginInsertRows(QModelIndex(),index,index);
+        });
+        connect(mList,&MashineList::postAppendItem,this,[=]() {
             endInsertRows();
         });
         connect(mList,&MashineList::preRemovedItem,this,[=](int index) {

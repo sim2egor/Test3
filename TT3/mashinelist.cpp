@@ -36,8 +36,10 @@ void MashineList::appendItem()
 
 void MashineList::removedCompleteItem()
 {
+    MashineItem item;
     for (int i=0; i< mItems.size();)
     {
+        item = mItems.at(i);
         if (mItems.at(i).del) {
             emit preRemovedItem(i);
             mItems.remove(i);

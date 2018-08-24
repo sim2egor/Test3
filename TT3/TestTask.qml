@@ -4,27 +4,46 @@ import QtQuick.Layouts 1.3
 
 import Mashines 1.0
 
-Frame {
-    ListView {
-        implicitWidth: 250
-        implicitHeight: 300
-        clip: true
 
-        model: MashinesModel{}
+ColumnLayout {
+    Frame {
+        Layout.fillWidth: true
+        ListView {
+            implicitWidth: 250
+            implicitHeight: 300
+            clip: true
+            anchors.fill: parent
 
-        delegate: RowLayout {
-            width: parent.width
-            CheckBox{
-                checked : model.del
-                onClicked: model.done =checked
+            model: MashinesModel{
+                list: mashList
             }
-            TextField {
-                text : model.descriptor
-                onEditingFinished: model.descriptor = text
-                Layout.fillWidth: true
+
+            delegate: RowLayout {
+                width: parent.width
+                CheckBox{
+                    checked : model.del
+                    onClicked: model.del =checked
+                }
+                TextField {
+                    text : model.descriptor
+                    onEditingFinished: model.descriptor = text
+                    Layout.fillWidth: true
+                }
             }
+
         }
 
     }
-
+    RowLayout{
+        Button {
+            text: qsTr("add")
+            Layout.fillWidth: true
+            onClicked: mashList.appendItem();
+        }
+        Button {
+            text: qsTr("delet")
+            Layout.fillWidth: true
+            onClicked: mashList.removedCompleteItem();
+        }
+    }
 }
