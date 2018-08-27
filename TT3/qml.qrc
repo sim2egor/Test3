@@ -4,5 +4,8 @@
         <file>TestTask.qml</file>
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>icons/right.png</file>
+        <file>icons/quit.png</file>
+        <file>SquareButton.qml</file>
     </qresource>
 </RCC>

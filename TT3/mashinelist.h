@@ -14,6 +14,7 @@ class MashineList : public QObject
     Q_OBJECT
 public:
     explicit MashineList(QObject *parent = nullptr);
+    ~MashineList();
 
     QVector <MashineItem> items() const;
     bool setItemAt(int index,const MashineItem &item);
