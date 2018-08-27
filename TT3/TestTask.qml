@@ -29,21 +29,44 @@ ColumnLayout {
                     onEditingFinished: model.descriptor = text
                     Layout.fillWidth: true
                 }
+                SquareButton {
+                    onButtonClicked: {
+                        mashList.appendItem()
+                    }
+
+                }
             }
 
         }
 
     }
     RowLayout{
+
         Button {
             text: qsTr("add")
             Layout.fillWidth: true
             onClicked: mashList.appendItem();
         }
+
         Button {
-            text: qsTr("delet")
-            Layout.fillWidth: true
+            icon.name: "edit-cut"
+            icon.source: "icons/quit.png"
             onClicked: mashList.removedCompleteItem();
         }
+
+//        Button {
+//            icon.name: "edit-cut"
+//            icon.source: "icons/quit.png"
+//        }
+        Button {
+            icon.color: "transparent"
+            icon.source: "icons/right.png"
+        }
+//        SquareButton {
+//            id : aaa
+//            onButtonClicked: mashList.appendItem()
+
+//        }
     }
+
 }
