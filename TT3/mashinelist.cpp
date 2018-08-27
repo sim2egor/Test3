@@ -1,5 +1,7 @@
 #include "mashinelist.h"
 #include "mashinelist.h"
+#include "mashinelist.h"
+#include "mashinelist.h"
 #include <QtSql>
 
 MashineList::MashineList(QObject *parent) : QObject(parent)
@@ -11,7 +13,6 @@ MashineList::MashineList(QObject *parent) : QObject(parent)
     while (q.next()) {
         checked = q.value(1).toBool();
         QString note = q.value(2).toString();
-        qDebug() << note << checked;
         mItems.append({checked,note});
     }
 }
@@ -29,7 +30,6 @@ MashineList::~MashineList()
         if(!q.exec())
             qDebug() << q.lastError();;
     }
-    qDebug() << "End of Mashinelist";
 }
 
 QVector <MashineItem> MashineList::items() const
@@ -60,7 +60,16 @@ void MashineList::appendItem()
     emit postAppendItem();
 }
 
-
+void MashineList::copydItem(int index)
+{
+    emit preAppendItem();
+    const MashineItem &old = mItems.at(index);
+    MashineItem item;
+    item.del = old.del;
+    item.descriptor=old.descriptor;
+    mItems.append(item);
+    emit postAppendItem();
+}
 void MashineList::removedCompleteItem()
 {
     MashineItem item;

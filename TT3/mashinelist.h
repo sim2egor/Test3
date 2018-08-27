@@ -30,6 +30,7 @@ signals:
 public slots:
     void appendItem();
     void removedCompleteItem();
+    void copydItem(int index);
 private:
     QVector <MashineItem> mItems;
 };

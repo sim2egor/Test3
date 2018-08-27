@@ -31,13 +31,13 @@ ColumnLayout {
                 }
                 SquareButton {
                     onButtonClicked: {
-                        mashList.appendItem()
+                        mashList.copydItem(index)
                     }
-
                 }
             }
 
         }
+
 
     }
     RowLayout{

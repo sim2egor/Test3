@@ -79,7 +79,6 @@ QSqlError initDb()
         return q.lastError();
 
     if (!q.prepare(QLatin1String("insert into notes(checked, note) values(?,?)"))){
-        qDebug() << q.lastError();
         return q.lastError();
     }
     QVariant sfiction = addGenre(q,0, QLatin1String("Science Fiction"));

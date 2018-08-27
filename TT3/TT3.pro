@@ -33,5 +33,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     mashinesmodel.h \
     mashinelist.h \
-    initdb.h \
-    squarebutton.h
+    initdb.h

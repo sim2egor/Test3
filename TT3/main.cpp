@@ -14,8 +14,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     // DB init
     //DataBase database;
-    if (!QSqlDatabase::drivers().contains("QSQLITE"))
+    if (!QSqlDatabase::drivers().contains("QSQLITE")){
         qDebug() <<"error open DB";
+    return -1;}
     // Initialize the database:
     QSqlError err = initDb();
     if (err.type() != QSqlError::NoError) {
