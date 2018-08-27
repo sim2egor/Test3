@@ -12,7 +12,7 @@ MashineList::MashineList(QObject *parent) : QObject(parent)
     QString note;
     while (q.next()) {
         checked = q.value(1).toBool();
-        QString note = q.value(2).toString();
+        note = q.value(2).toString();
         mItems.append({checked,note});
     }
 }

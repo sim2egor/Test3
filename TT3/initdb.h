@@ -65,7 +65,7 @@ QVariant addGenre(QSqlQuery &q, const int check,const QString &name)
 QSqlError initDb()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("C:/example/example.db");
+    db.setDatabaseName("example.db");
 
     if (!db.open())
         return db.lastError();

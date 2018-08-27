@@ -54,19 +54,6 @@ ColumnLayout {
             onClicked: mashList.removedCompleteItem();
         }
 
-//        Button {
-//            icon.name: "edit-cut"
-//            icon.source: "icons/quit.png"
-//        }
-        Button {
-            icon.color: "transparent"
-            icon.source: "icons/right.png"
-        }
-//        SquareButton {
-//            id : aaa
-//            onButtonClicked: mashList.appendItem()
-
-//        }
     }
 
 }

@@ -18,7 +18,7 @@ SOURCES += \
     mashinelist.cpp
 
 RESOURCES += qml.qrc
-
+RC_FILE =RECOURCES.RC
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
@@ -33,4 +33,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     mashinesmodel.h \
     mashinelist.h \
-    initdb.h
+    initdb.h \
+    recources.rc
+
+DISTFILES += \
+    recources.rc \
+    icon.ico
